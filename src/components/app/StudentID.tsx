@@ -22,7 +22,7 @@ export const StudentID = () => {
           <input
             type="text"
             onChange={(event) => {setStdID(event.target.value)}}
-            className="appearance-none outline-none focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500 block w-56 rounded-none rounded-full px-4 h-11 border-gray-300 placeholder-TUCMC-gray-400"
+            className="appearance-none outline-none focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500 block w-56 rounded-full px-4 h-11 border-gray-300 placeholder-TUCMC-gray-400"
             placeholder="เลขประจำตัวนักเรียน"
           />
           <Button onClick={send} className="absolute bg-TUCMC-pink-400 w-11 h-11 rounded-full flex items-center justify-center top-0 right-0 cursor-pointer">
