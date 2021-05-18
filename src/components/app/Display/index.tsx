@@ -8,18 +8,24 @@ import {useTask} from "../../../contexts/task";
 import classnames from "classnames"
 import {motion} from "framer-motion"
 
-const Display = () => {
+const Display = ({ data }) => {
 
   const [todoList, setTodoList] = useState({saveimg: false, line: false})
   const { section, updateTask } = useTask()
+  const [parsedData, setParsedData] = useState([])
 
-  const ex = [
-    {title: "ชื่อ", context: "นายพีรดน สาเงิน"},
-    {title: "เลขประจำตัว", context: "59574"},
-    {title: "แผนการเรียน", context: "ศิลป์จีน"},
-    {title: ["ชั้น", "ห้อง", "เลขที่"], context: ["ม.5","931", "41"]},
-    {title: "ครูประจำชั้น", context: ["ครูปราถนา จันทร์ทา","ครูปีเตอร์ ชังกัส"]}
-  ]
+  useEffect(() => {
+
+    if ("prefix" in data) {
+      setParsedData([
+        {title: "ชื่อ", context: `${data.prefix}${data.firstname} ${data.lastname}`},
+        {title: "เลขประจำตัว", context: data.stdID},
+        {title: "แผนการเรียน", context: data.branch},
+        {title: ["ชั้น", "ห้อง", "เลขที่"], context: [data.level,data.room, data.number]},
+        {title: "ครูประจำชั้น", context: data.teacher}
+      ])
+    }
+  },[data])
 
   useEffect(() => {
     if (Object.values(todoList).every(val => (val))) {
@@ -53,7 +59,7 @@ const Display = () => {
         <div className="border border-b border-TUCMC-gray-800 w-16"></div>
         <div className="space-y-2">
           {
-            ex.map((item, index) => {
+            parsedData.length > 0 && parsedData.map((item, index) => {
               return <DataRow key={`row-${index}`} data={item}/>
             })
           }
