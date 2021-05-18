@@ -21,7 +21,6 @@ export default function Index() {
   useEffect(() => {
     const fetch = async () => {
       const res = await request("data", "fetchPrevData", {})
-      console.log(res)
       if (res.status) {
         setDisplay(res.data)
         updateTask("display")

@@ -10,7 +10,7 @@ import {useSubmit} from "../../hooks/submitForms";
 import {useToast} from "@components/common/Toast/ToastContext";
 import {request} from "@utils/request";
 
-export const Credentials = ({ userCred, setDisplay }) => {
+export const Credentials = ({userCred, setDisplay}) => {
 
   const {section, updateTask} = useTask()
   const [lastname, setLastname] = useState("")
@@ -34,7 +34,7 @@ export const Credentials = ({ userCred, setDisplay }) => {
     if (res.status) {
       setDisplay(res.data)
       updateTask("display")
-    }else{
+    } else {
       switch (res.report) {
         case "invalid_stdID":
           addToast({
@@ -70,7 +70,7 @@ export const Credentials = ({ userCred, setDisplay }) => {
   })
 
   useEffect(() => {
-    if (lastname == "") return;
+    if (lastname === "") return;
     const hashed = crypto.createHash("SHA256").update(lastname).digest("base64")
     if (hashed === userCred.lastname) {
       setLastnameStat("correct");
@@ -91,8 +91,16 @@ export const Credentials = ({ userCred, setDisplay }) => {
           </div>
           <div className="space-y-1">
             <h1 className="text-gray-700">นามสกุล</h1>
-            <Input updateHandler={setLastname} placeholder="นามสกุล" value={lastname} required={true}
-                   className={lastnameStat === "wrong" ? "border-TUCMC-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : lastnameStat === "correct" && "border-green-500 focus:ring-TUCMC-green-500 focus:border-TUCMC-green-500"}/>
+            <input
+              type="text"
+              onChange={(event) => {
+                setLastname(event.target.value)
+              }}
+              className={classnames("appearance-none outline-none block w-full rounded-full px-4 h-11 shadow-sm placeholder-TUCMC-gray-400", lastnameStat === "wrong" ? "border-TUCMC-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : lastnameStat === "correct" ? "border-green-500 focus:ring-TUCMC-green-500 focus:border-TUCMC-green-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
+              placeholder="นามสกุล"
+              value={lastname}
+              required
+            />
           </div>
           <div className="space-y-1">
             <h1 className="text-gray-700">เบอร์โทรศัพท์</h1>
