@@ -11,7 +11,7 @@ module.exports = {
       sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       display: [
         'Inter var',
-        'IBM Plex Sans Thai',
+        'Noto Sans Thai',
         ...defaultTheme.fontFamily.sans,
       ]
     },
@@ -82,81 +82,91 @@ module.exports = {
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
             fontWeight: '400',
             fontDisplay: 'swap',
             src:
-                'local("IBM Plex Sans Thai"), local("IBMPlexSansThai"), url("/assets/fonts/IBMPlexSansThai-Regular.woff2") format("woff2")',
+                'local("Noto Sans Thai"), local("NotoSansThai"), url("/assets/fonts/NotoSansThai-Regular.woff2") format("woff2")',
           },
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
-            fontWeight: '450',
+            fontWeight: '900',
             fontDisplay: 'swap',
             src:
-                'local("IBM Plex Sans Thai Text"), local("IBMPlexSansThai-Text"), url("/assets/fonts/IBMPlexSansThai-Text.woff2") format("woff2")',
+                'local("Noto Sans Thai Black"), local("NotoSansThai-Black"), url("/assets/fonts/NotoSansThai-Black.woff2") format("woff2")',
           },
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
             fontWeight: '500',
             fontDisplay: 'swap',
             src:
-                'local("IBM Plex Sans Thai Medium"), local("IBMPlexSansThai-Medium"), url("/assets/fonts/IBMPlexSansThai-Medium.woff2") format("woff2")',
+                'local("Noto Sans Thai Medium"), local("NotoSansThai-Medium"), url("/assets/fonts/NotoSansThai-Medium.woff2") format("woff2")',
           },
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
             fontWeight: '600',
             fontDisplay: 'swap',
             src:
-                'local("IBM Plex Sans Thai SemiBold"), local("IBMPlexSansThai-SemiBold"), url("/assets/fonts/IBMPlexSansThai-SemiBold.woff2") format("woff2")',
+                'local("Noto Sans Thai SemiBold"), local("NotoSansThai-SemiBold"), url("/assets/fonts/NotoSansThai-SemiBold.woff2") format("woff2")',
           },
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
             fontWeight: '700',
             fontDisplay: 'swap',
             src:
-                'local("IBM Plex Sans Thai Bold"), local("IBMPlexSansThai-Bold"), url("/assets/fonts/IBMPlexSansThai-Bold.woff2") format("woff2")',
+                'local("Noto Sans Thai Bold"), local("NotoSansThai-Bold"), url("/assets/fonts/NotoSansThai-Bold.woff2") format("woff2")',
           },
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
+            fontStyle: 'normal',
+            fontWeight: '800',
+            fontDisplay: 'swap',
+            src:
+                'local("Noto Sans Thai ExtraBold"), local("NotoSansThai-ExtraBold"), url("/assets/fonts/NotoSansThai-ExtraBold.woff2") format("woff2")',
+          },
+        },
+        {
+          '@font-face': {
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
             fontWeight: '100',
             fontDisplay: 'swap',
             src:
-                'local("IBM Plex Sans Thai Thin"), local("IBMPlexSansThai-Thin"), url("/assets/fonts/IBMPlexSansThai-Thin.woff2") format("woff2")',
+                'local("Noto Sans Thai Thin"), local("NotoSansThai-Thin"), url("/assets/fonts/NotoSansThai-Thin.woff2") format("woff2")',
           },
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
             fontWeight: '200',
             fontDisplay: 'swap',
             src:
-                'local("IBM Plex Sans Thai ExtraLight"), local("IBMPlexSansThai-ExtraLight"), url("/assets/fonts/IBMPlexSansThai-ExtraLight.woff2") format("woff2")',
+                'local("Noto Sans Thai ExtraLight"), local("NotoSansThai-ExtraLight"), url("/assets/fonts/NotoSansThai-ExtraLight.woff2") format("woff2")',
           },
         },
         {
           '@font-face': {
-            fontFamily: 'IBM Plex Sans Thai',
+            fontFamily: 'Noto Sans Thai',
             fontStyle: 'normal',
             fontWeight: '300',
             fontDisplay: 'swap',
-            src: 'local("IBM Plex Sans Thai Light"), local("IBMPlexSansThai-Light"), url("/assets/fonts/IBMPlexSansThai-Light.woff2") format("woff2")',
+            src: 'local("Noto Sans Thai Light"), local("NotoSansThai-Light"), url("/assets/fonts/NotoSansThai-Light.woff2") format("woff2")',
           },
         },
         {
@@ -168,6 +178,6 @@ module.exports = {
           },
         },
       ])
-    }
+    },require('@tailwindcss/forms')
   ],
 }
