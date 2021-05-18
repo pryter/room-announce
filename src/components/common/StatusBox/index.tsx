@@ -8,7 +8,7 @@ const StatusBox = () => {
   return (
     <div className="rounded-md border w-full">
       {tasks.map((item, index, arr) => {
-        return <StatusItem taskStatus={item} section={index == 0 ? "top" : index == arr.length - 1 ? "bottom" : "between"} index={index + 1}/>
+        return <StatusItem key={`task-${index}`} taskStatus={item} section={index == 0 ? "top" : index == arr.length - 1 ? "bottom" : "between"} index={index + 1}/>
       })}
     </div>
   )

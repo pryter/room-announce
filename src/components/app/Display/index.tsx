@@ -46,20 +46,20 @@ const Display = () => {
 
   return (
     <motion.div className={classnames((section !== "display" && section !== "saved") && "hidden")}>
-      <ContentBox className="pt-10 pb-12 px-6 space-y-8">
+      <ContentBox className="pt-10 pb-14 px-6 space-y-8">
         <div>
           <h1 className="text-2xl text-gray-700 font-medium">ข้อมูลนักเรียน</h1>
         </div>
         <div className="border border-b border-TUCMC-gray-800 w-16"></div>
         <div className="space-y-2">
           {
-            ex.map(item => {
-              return <DataRow data={item}/>
+            ex.map((item, index) => {
+              return <DataRow key={`row-${index}`} data={item}/>
             })
           }
         </div>
       </ContentBox>
-      <div className="flex space-x-3 mt-8">
+      <div className="flex space-x-2.5 mt-8">
         <Button onClick={saveImg} className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-1/2 cursor-pointer">
           <ArrowCircleDownIcon className="w-5 h-5"/>
           <h1 className="font-medium text-lg">ตารางสอน</h1>

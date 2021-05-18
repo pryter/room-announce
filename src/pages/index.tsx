@@ -12,10 +12,9 @@ import Display from "@components/app/Display";
 
 export default function Index() {
 
-
   return (
     <TaskProvider>
-      <div className="py-12 space-y-6 px-6 max-w-[400px] mx-auto">
+      <div className="py-12 space-y-6 px-6 max-w-[405px] mx-auto">
         <div className="space-y-10">
           <Heading/>
           <StatusBox/>
