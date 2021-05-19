@@ -19,9 +19,10 @@ export const checkID = async (req, res) => {
   const body = req.body
 
   if (!isValidStdID(body.stdID)) return updateStatus(initialStatus, "report", "invalid_stdID")
-  const data = await initialiseDB().collection("data").where("stdID", "==", body.stdID).get()
-  if (data.empty) return updateStatus(initialStatus, "report", "missing_stdID")
-  const userCred = data.docs[0].data()
+  const data = await initialiseDB().collection("data").doc(body.stdID).get()
+  if (!data.exists) return updateStatus(initialStatus, "report", "missing_stdID")
+  const userCred = data.data()
+
   const hashedLastname = crypto.createHash("SHA256").update(userCred.lastname).digest("base64")
 
   return updateStatus(initialStatus, {status: true, report: "success", data: {stdID: userCred.stdID, firstname: userCred.firstname, lastname: hashedLastname}})
@@ -32,12 +33,13 @@ export const getData = async (req, res) => {
   const body = req.body
 
   if (!isValidStdID(body.stdID)) return updateStatus(initialStatus, "report", "invalid_stdID")
-  const data = await initialiseDB().collection("data").where("stdID", "==", body.stdID).get()
-  if (data.empty) return updateStatus(initialStatus, "report", "missing_stdID")
-  const userCred = data.docs[0].data()
+  const data = await initialiseDB().collection("data").doc(body.stdID).get()
+  if (!data.exists) return updateStatus(initialStatus, "report", "missing_stdID")
+  const userCred = data.data()
   if (body.lastname !== userCred.lastname) return updateStatus(initialStatus, "report", "not_matched_lastname")
   if (!isBetween(body.phone.length,8,11)) return updateStatus(initialStatus, "report", "invalid_phone")
-  await data.docs[0].ref.update({phone: body.phone})
+  await data.ref.update({phone: body.phone})
+
   const encrypted = aes256.encrypt(process.env.DATA_KEY, JSON.stringify(userCred))
   const cookies = new Cookies(req, res, {keys: [process.env.COOKIE_KEY]})
   const expiresTime = (new Date().getTime()) + 24 * 60 * 60 * 1000;

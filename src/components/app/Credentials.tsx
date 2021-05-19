@@ -18,6 +18,18 @@ export const Credentials = ({userCred, setDisplay}) => {
   const [phone, setPhone] = useState("")
   const {addToast} = useToast()
 
+  const clear = () => {
+    setLastname("")
+    setPhone("")
+    setLastnameStat("")
+  }
+
+  useEffect(() => {
+    if (section === "stdID") {
+      clear()
+    }
+  },[section])
+
   const {loading, submitFunc} = useSubmit(async () => {
     if (lastnameStat !== "correct") return addToast({
       color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง",
