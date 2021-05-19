@@ -8,7 +8,7 @@ import {useTask} from "../../../contexts/task";
 import classnames from "classnames"
 import {motion} from "framer-motion"
 
-const Display = ({ data }) => {
+const Display = ({ data, setRev }) => {
 
   const [todoList, setTodoList] = useState({saveimg: false, line: false})
   const { section, updateTask } = useTask()
@@ -69,11 +69,12 @@ const Display = ({ data }) => {
   }
 
   const back = () => {
+    setRev(true)
     updateTask("restart")
   }
 
   return (
-    <motion.div className={classnames((section !== "display" && section !== "saved") && "hidden")}>
+    <div>
       <ContentBox className="pt-10 pb-14 px-6 space-y-8">
         <div>
           <h1 className="text-2xl text-gray-700 font-medium">ข้อมูลนักเรียน</h1>
@@ -100,10 +101,10 @@ const Display = ({ data }) => {
         </div>
         <Button onClick={back} className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer">
           <ArrowCircleLeftIcon className="w-5 h-5"/>
-          <h1 className="font-medium text-lg">ย้อนกลับ</h1>
+          <h1 className="font-medium text-lg">ออกจากระบบ</h1>
         </Button>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

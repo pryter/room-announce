@@ -25,6 +25,8 @@ export const TaskProvider = ({children}) => {
 const taskAction = () => {
 
   const [section, setSection] = useState("stdID")
+  const [lastSection, setLastSection] = useState("")
+
   const [tasks, setTasks] = useTaskState()
 
   useEffect(() => {
@@ -43,6 +45,16 @@ const taskAction = () => {
     if (current === "restart") {
       reset()
       return
+    }
+
+    if (current === "report") {
+      setLastSection(section)
+    }
+
+    if (lastSection !== ""){
+      setSection(lastSection)
+      setLastSection("")
+      return;
     }
 
     setSection(current)

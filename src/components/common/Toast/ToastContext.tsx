@@ -5,7 +5,7 @@ interface ToastType {
   theme: "default" | "modern"
   icon: "info" | "cross" | "tick",
   title: string,
-  text: string,
+  text: string | JSX.Element,
   color?: "green" | "yellow" | "red" | "blue",
   lifeSpan?: number,
   crossPage?: boolean
