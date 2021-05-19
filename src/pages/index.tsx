@@ -104,7 +104,7 @@ export default function Index() {
   }
 
   return (
-    <div className="lg:flex lg:min-h-[1300px]">
+    <div className="lg:flex lg:min-h-[1500px]">
       <div className="flex-shrink hidden lg:block w-[431px] relative min-h-screen">
         <Image src="/assets/images/splash.jpg" layout="fill" className="object-cover"/>
       </div>
