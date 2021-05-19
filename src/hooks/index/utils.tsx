@@ -11,7 +11,7 @@ export const updateTaskfromSection = (setTasks, section) => {
     setTasks(prev => ([
       {...prev[0], status: "success"},
       {...prev[1], status: "current"},
-      prev[2]
+      {...prev[2], status: "pending"}
     ]))
   }
 
