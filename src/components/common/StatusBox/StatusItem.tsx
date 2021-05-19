@@ -15,7 +15,7 @@ export const StatusItem = ({ taskStatus, selfSection, index }) => {
       </div>
       <div className="flex justify-between items-center w-full">
         <h1 className={classnames(taskStatus.status === "current" ? "text-TUCMC-pink-400" : taskStatus.status === "pending" ? "text-gray-500" : "text-TUCMC-gray-900")}>{taskStatus.title}</h1>
-        {index === 1 && section === "display" && <RewindIcon onClick={() => {updateTask("restart")}} className="w-5 h-5 text-TUCMC-gray-400 cursor-pointer"/>}
+        {index === 1 && (section === "display" || section === "saved")&& <RewindIcon onClick={() => {updateTask("restart")}} className="w-5 h-5 text-TUCMC-gray-400 cursor-pointer"/>}
       </div>
     </div>
   )

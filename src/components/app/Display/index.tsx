@@ -38,15 +38,33 @@ const Display = ({ data }) => {
     setTodoList(prevState => ({...prevState, [buttType]: true}))
   }
 
+  const donwloadPDF = (room ,branch) => {
+    const a = document.createElement("a")
+    a.href = `/user/schedules/${room}.jpg`
+    a.download = `${room} ${branch}.jpg`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
+
+  const linePopUp = (link) => {
+    const a = document.createElement("a")
+    a.href = `${link}`
+    a.target = "_blank"
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
+
   const saveImg = () => {
     regButtClick(() => {
-
+      donwloadPDF(data.room, data.branch)
     },"saveimg")
   }
 
   const joinLine = () => {
     regButtClick(() => {
-
+      linePopUp(data.lineURL)
     },"line")
   }
 
