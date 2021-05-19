@@ -11,7 +11,7 @@ import {request} from "@utils/request";
 import {ArrowCircleLeftIcon} from "@heroicons/react/solid";
 import {Ellipsis} from "../../vectors/Loaders/Ellipsis";
 
-export const Credentials = ({userCred, setDisplay, report}) => {
+export const Credentials = ({userCred, setDisplay, report, setRev}) => {
 
   const {section, updateTask} = useTask()
   const [lastname, setLastname] = useState("")
@@ -94,7 +94,8 @@ export const Credentials = ({userCred, setDisplay, report}) => {
 
 
   const back = () => {
-    updateTask("stdID")
+    setRev()
+    updateTask("restart")
   }
 
   return (

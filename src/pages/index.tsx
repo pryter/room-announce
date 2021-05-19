@@ -24,6 +24,8 @@ export default function Index() {
   const [revAnimation, setRevAnimation] = useState(false)
   const [hide, setHide] = useState(false)
   const [slideOffset, setSlideOffset] = useState(0)
+  const [resetRev, setResetRev] = useState(0)
+
   const mainDivRef = useRef(null)
 
   const {width} = useWindowDimensions()
@@ -103,6 +105,17 @@ export default function Index() {
     updateTask("report")
   }
 
+  useEffect(() => {
+    if (resetRev >= 2) {
+      setRevAnimation(false)
+    }
+  },[resetRev])
+
+  const doRev = () => {
+    setResetRev(0)
+    setRevAnimation(true)
+  }
+
   return (
     <div className="lg:flex lg:min-h-[1500px]">
       <div className="flex-shrink hidden lg:block w-[431px] relative min-h-screen">
@@ -129,14 +142,14 @@ export default function Index() {
                           ref={mainDivRef}
                           transition={{duration: (200 + (slideOffset / 2))/400}}
                           onAnimationComplete={() => {
-                            section === "stdID" && setRevAnimation(false)
+                            setResetRev(prev => (prev + 1))
                           }}
                           key={section === "saved" ? "display" : section}
               >
                 {section === "stdID" && <StudentID updateCred={updateCred} report={report}/>}
-                {section === "credentials" && <Credentials userCred={cred} setDisplay={setDisplay} report={report}/>}
-                {(section === "display" || section === "saved") && <Display data={display} setRev={setRevAnimation}/>}
-                {section === "report" && <Report setHide={setHide}/>}
+                {section === "credentials" && <Credentials userCred={cred} setDisplay={setDisplay} report={report} setRev={doRev}/>}
+                {(section === "display" || section === "saved") && <Display data={display} setRev={doRev}/>}
+                {section === "report" && <Report setHide={setHide} setRev={doRev}/>}
               </motion.div>
             </AnimatePresence>
             {section !== "report" && <Footer report={report}/>}

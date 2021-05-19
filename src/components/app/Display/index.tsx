@@ -69,7 +69,7 @@ const Display = ({ data, setRev }) => {
   }
 
   const back = () => {
-    setRev(true)
+    setRev()
     updateTask("restart")
   }
 

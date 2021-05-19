@@ -10,7 +10,7 @@ import {request} from "@utils/request";
 import {ArrowCircleLeftIcon} from "@heroicons/react/solid";
 import {Ellipsis} from "../../vectors/Loaders/Ellipsis";
 
-export const Report = ({ setHide }) => {
+export const Report = ({ setHide, setRev }) => {
 
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
@@ -58,6 +58,7 @@ export const Report = ({ setHide }) => {
   }
 
   const back = () => {
+    setRev()
     setHide(false)
     setTimeout(() => {updateTask("stdID")}, 600)
   }
