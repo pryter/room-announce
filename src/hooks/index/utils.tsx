@@ -5,7 +5,7 @@ export const updateTaskfromSection = (setTasks, section) => {
   if (section === "stdID") {
     setTasks([{title: "กรอกเลขประจำตัวนักเรียน", status: "current"}, {
       title: "กรอกข้อมูลส่วนตัว", status: "pending"
-    }, {title: <><p>ดาวน์โหลดตารางสอน</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, status: "pending"}])
+    }, {title: <><p>ดาวน์โหลดตารางเรียน</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, status: "pending"}])
   }
   if (section === "credentials") {
     setTasks(prev => ([

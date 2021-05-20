@@ -23,7 +23,6 @@ export const StudentID = ({updateCred, report}) => {
       updateCred(res.data)
       updateTask("credentials")
     } else {
-      console.log(res.report)
       switch (res.report) {
         case "invalid_stdID":
           addToast({
