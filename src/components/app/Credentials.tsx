@@ -39,7 +39,7 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
     })
 
     if (!(phone.length >= 9 && phone.length <= 10)) return addToast({
-      color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง เบอร์โทรศัพท์จะต้องมีความยาว 9 - 10 ตัวเท่านั้น",
+      color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง เบอร์โทรศัพท์จะต้องมีความยาว 9 - 10 หลักเท่านั้น",
       theme: "modern", title: "หมายเลขโทรศัพท์ไม่ถูกต้อง"
     })
 
@@ -70,7 +70,7 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
           break
         case "invalid_phone":
           addToast({
-            color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง เบอร์โทรศัพท์จะต้องมีความยาว 9 - 10 ตัวเท่านั้น",
+            color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง เบอร์โทรศัพท์จะต้องมีความยาว 9 - 10 หลักเท่านั้น",
             theme: "modern", title: "หมายเลขโทรศัพท์ไม่ถูกต้อง"
           })
           break
