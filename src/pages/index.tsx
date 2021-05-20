@@ -16,7 +16,6 @@ import {AnimatePresence, AnimateSharedLayout, motion} from "framer-motion";
 import {Report} from "@components/app/Report";
 import classnames from "classnames"
 import {useWindowDimensions} from "@utils/document";
-import {scrollTo} from 'scroll-js';
 
 export default function Index() {
 
@@ -117,14 +116,6 @@ export default function Index() {
     setRevAnimation(true)
   }
 
-  const start = () => {
-    if (width >= 1024) {
-      setTimeout(() => {
-        scrollTo(window, {top: 100, duration: 500})
-      }, 900)
-    }
-  }
-
   return (
     <div className="lg:flex lg:min-h-[1600px]">
       <div className="flex-shrink hidden lg:block w-[431px] relative min-h-screen">
@@ -142,7 +133,7 @@ export default function Index() {
               <StatusBox/>
             </motion.div>}
           </div>
-          <motion.div animate={hide ? "up" : "down"} variants={updown} onAnimationStart={hide && start}>
+          <motion.div animate={hide ? "up" : "down"} variants={updown}>
             <AnimateSharedLayout>
               <AnimatePresence exitBeforeEnter={true} initial={false}>
                 <motion.div initial="initial"
