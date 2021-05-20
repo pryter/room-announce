@@ -161,7 +161,7 @@ const Display = ({data, setRev, report }) => {
                 <Button onClick={saveImg}
                         className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
                   <ArrowCircleDownIcon className="w-5 h-5"/>
-                  <h1 className="font-medium text-lg">ตารางสอน</h1>
+                  <h1 className="font-medium text-lg">ตารางเรียน</h1>
                 </Button>
                 <Button onClick={reveal}
                         className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-1/2 cursor-pointer">
