@@ -16,6 +16,7 @@ import {AnimatePresence, AnimateSharedLayout, motion} from "framer-motion";
 import {Report} from "@components/app/Report";
 import classnames from "classnames"
 import {useWindowDimensions} from "@utils/document";
+import {scrollTo} from 'scroll-js';
 
 export default function Index() {
 
@@ -80,7 +81,7 @@ export default function Index() {
       }
     },
     down: {
-      y:0,
+      y: 0,
       transition: {
         duration: 0.5
       }
@@ -92,13 +93,13 @@ export default function Index() {
       const divWidth = mainDivRef.current.clientWidth
       const imgOffset = width >= 1024 ? 431 : 0
 
-      if ((width - divWidth - imgOffset)/2 - 200 < 0) {
+      if ((width - divWidth - imgOffset) / 2 - 200 < 0) {
         setSlideOffset((width - imgOffset - divWidth) / 2 - 200)
-      }else{
+      } else {
         setSlideOffset(0)
       }
     }
-  },[width])
+  }, [width])
 
   const report = () => {
     setHide(true)
@@ -109,15 +110,23 @@ export default function Index() {
     if (resetRev >= 2) {
       setRevAnimation(false)
     }
-  },[resetRev])
+  }, [resetRev])
 
   const doRev = () => {
     setResetRev(0)
     setRevAnimation(true)
   }
 
+  const start = () => {
+    if (width >= 1024) {
+      setTimeout(() => {
+        scrollTo(window, {top: 100, duration: 500})
+      }, 900)
+    }
+  }
+
   return (
-    <div className="lg:flex lg:min-h-[1500px]">
+    <div className="lg:flex lg:min-h-[1600px]">
       <div className="flex-shrink hidden lg:block w-[431px] relative min-h-screen">
         <Image src="/assets/images/splash.jpg" layout="fill" className="object-cover"/>
       </div>
@@ -133,26 +142,30 @@ export default function Index() {
               <StatusBox/>
             </motion.div>}
           </div>
-          <motion.div animate={hide ? "up" : "down"} variants={updown}>
-            <AnimatePresence exitBeforeEnter={true} initial={false}>
-              <motion.div initial="initial"
-                          animate="animate"
-                          exit="exit"
-                          variants={variants}
-                          ref={mainDivRef}
-                          transition={{duration: (200 + (slideOffset / 2))/400}}
-                          onAnimationComplete={() => {
-                            setResetRev(prev => (prev + 1))
-                          }}
-                          key={section === "saved" ? "display" : section}
-              >
-                {section === "stdID" && <StudentID updateCred={updateCred} report={report}/>}
-                {section === "credentials" && <Credentials userCred={cred} setDisplay={setDisplay} report={report} setRev={doRev}/>}
-                {(section === "display" || section === "saved") && <Display data={display} setRev={doRev}/>}
-                {section === "report" && <Report setHide={setHide} setRev={doRev}/>}
-              </motion.div>
-            </AnimatePresence>
-            {section !== "report" && <Footer report={report}/>}
+          <motion.div animate={hide ? "up" : "down"} variants={updown} onAnimationStart={hide && start}>
+            <AnimateSharedLayout>
+              <AnimatePresence exitBeforeEnter={true} initial={false}>
+                <motion.div initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            variants={variants}
+                            ref={mainDivRef}
+                            transition={{duration: (200 + (slideOffset / 2)) / 400}}
+                            onAnimationComplete={() => {
+                              setResetRev(prev => (prev + 1))
+                            }}
+                            key={section === "saved" ? "display" : section}
+                >
+                  {section === "stdID" && <StudentID updateCred={updateCred} report={report}/>}
+                  {section === "credentials" && <Credentials userCred={cred} setDisplay={setDisplay} report={report} setRev={doRev}/>}
+                  {(section === "display" || section === "saved") && <Display data={display} setRev={doRev} report={report}/>}
+                  {section === "report" && <Report setHide={setHide} setRev={doRev}/>}
+                </motion.div>
+              </AnimatePresence>
+              {section !== "report" && !(section === "display" || section === "saved") && <motion.div layout="position">
+                  <Footer report={report}/>
+              </motion.div>}
+            </AnimateSharedLayout>
           </motion.div>
         </div>
       </div>

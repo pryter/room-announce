@@ -3,6 +3,7 @@ import {Status, updateStatus} from "../status";
 import Cookies from "cookies"
 import crypto from "crypto"
 import aes256 from "aes256"
+import {fixGrammar} from "@utils/text";
 
 const isValidStdID = (id: string) => {
   return id.length === 5;
@@ -36,7 +37,7 @@ export const getData = async (req, res) => {
   const data = await initialiseDB().collection("data").doc(body.stdID).get()
   if (!data.exists) return updateStatus(initialStatus, "report", "missing_stdID")
   const userCred = data.data()
-  if (body.lastname !== userCred.lastname) return updateStatus(initialStatus, "report", "not_matched_lastname")
+  if (fixGrammar(body.lastname) !== fixGrammar(userCred.lastname)) return updateStatus(initialStatus, "report", "not_matched_lastname")
   if (!isBetween(body.phone.length,8,11)) return updateStatus(initialStatus, "report", "invalid_phone")
   await data.ref.update({phone: body.phone})
 

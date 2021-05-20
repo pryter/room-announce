@@ -16,9 +16,12 @@
     "firebase-admin": "^9.8.0",
     "framer-motion": "^4.1.17",
     "next": "10.2.0",
+    "qrcode": "^1.4.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-spinners": "^0.10.6"
+    "react-spinners": "^0.10.6",
+    "scroll-js": "^3.3.0",
+    "scroll-to-element": "^2.0.3"
   },
   "devDependencies": {
     "@heroicons/react": "^1.0.1",

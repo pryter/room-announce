@@ -10,6 +10,7 @@ import {useToast} from "@components/common/Toast/ToastContext";
 import {request} from "@utils/request";
 import {ArrowCircleLeftIcon} from "@heroicons/react/solid";
 import {Ellipsis} from "../../vectors/Loaders/Ellipsis";
+import {fixGrammar} from "@utils/text";
 
 export const Credentials = ({userCred, setDisplay, report, setRev}) => {
 
@@ -84,8 +85,8 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
 
   useEffect(() => {
     if (lastname === "") return;
-    const hashed = crypto.createHash("SHA256").update(lastname).digest("base64")
-    if (hashed === userCred.lastname) {
+    const hashed = crypto.createHash("SHA256").update(fixGrammar(lastname)).digest("base64")
+    if (hashed === fixGrammar(userCred.lastname)) {
       setLastnameStat("correct");
       return
     }

@@ -64,7 +64,7 @@ export const Report = ({ setHide, setRev }) => {
   }
 
   return (
-    <div>
+    <div className="report">
       <ContentBox className="flex flex-col justify-center py-10 px-9 mt-6 space-y-8">
         <div>
           <h1 className="text-2xl text-gray-700">รายงานปัญหา</h1>

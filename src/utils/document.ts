@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export const detectOuside = (ref, dep, callback) => {
+export const detectOutside = (ref, dep, callback) => {
   useEffect(() => {
 
     function handleClickOutside(event) {
