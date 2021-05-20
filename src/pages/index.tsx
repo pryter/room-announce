@@ -119,7 +119,9 @@ export default function Index() {
 
   const start = () => {
     if (width >= 1024) {
-      console.log("e")
+      setTimeout(() => {
+        scrollTo(window, {top: 100, duration: 500})
+      }, 900)
     }
   }
 
