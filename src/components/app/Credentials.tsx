@@ -52,7 +52,7 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
       switch (res.report) {
         case "invalid_stdID":
           addToast({
-            color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 ตัวอักษรและเป็นตัวเลขทั้งหมด",
+            color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 หลักและเป็นตัวเลขทั้งหมด",
             theme: "modern", title: "รหัสนักเรียนไม่ถูกต้อง"
           })
           break
