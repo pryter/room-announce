@@ -40,8 +40,8 @@ export const getData = async (req, res) => {
   if (fixGrammar(body.lastname) !== fixGrammar(userCred.lastname)) return updateStatus(initialStatus, "report", "not_matched_lastname")
   if (!isBetween(body.phone.length,8,11)) return updateStatus(initialStatus, "report", "invalid_phone")
   const fpArr = "fp" in userCred ? userCred.fp : []
-
-  await data.ref.update({phone: body.phone, fp: [body.fp ? body.fp : "", ...fpArr]})
+  const updatedArr = [body.fp ? body.fp : "", ...fpArr]
+  await data.ref.update({phone: body.phone, fp: Array.from(new Set(updatedArr))})
 
   const encrypted = aes256.encrypt(process.env.DATA_KEY, JSON.stringify(userCred))
   const cookies = new Cookies(req, res, {keys: [process.env.COOKIE_KEY]})
