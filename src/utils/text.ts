@@ -15,5 +15,5 @@ export const fixGrammar = (text: string) => {
     fixed = fixed.replace(new RegExp(item, "g"), correction[item])
   })
 
-  return fixed
+  return fixed.replace(/\u200B/g,'')
 }
