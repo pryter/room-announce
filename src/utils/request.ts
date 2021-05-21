@@ -7,7 +7,7 @@ export const request = async (path: string, action: string, data: {}): Promise<S
 
   const reqData = {
     action: action,
-    fingerPrint: fingerPrint.visitorId,
+    fp: fingerPrint.visitorId,
     ...data
   }
 
