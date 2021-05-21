@@ -24,7 +24,7 @@ export const checkID = async (req, res) => {
   if (!data.exists) return updateStatus(initialStatus, "report", "missing_stdID")
   const userCred = data.data()
 
-  const hashedLastname = crypto.createHash("SHA256").update(userCred.lastname).digest("base64")
+  const hashedLastname = crypto.createHash("SHA256").update(fixGrammar(userCred.lastname)).digest("base64")
 
   return updateStatus(initialStatus, {status: true, report: "success", data: {stdID: userCred.stdID, firstname: userCred.firstname, lastname: hashedLastname}})
 }
