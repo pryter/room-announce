@@ -12,6 +12,7 @@ export const submitReport = async (req,res) => {
     phone: body.phone,
     email: body.email,
     issue: body.issue,
+    fixed: false,
     fp: body.fp ? body.fp : "",
     timestamp: new Date().getTime()
   })
