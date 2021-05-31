@@ -10,7 +10,7 @@ const App = ({Component, pageProps}: AppProps) => {
   return (
     <div className="antialiased font-display">
       <Head>
-        <title>ระบบประกาศห้องเรียน โรงเรียนเตรียมอุดมศึกษา</title>
+        <title>ระบบประกาศห้อง ZOOM สำหรับงาน PAE โรงเรียนเตรียมอุดมศึกษา</title>
       </Head>
       <ToastProvider>
         <TaskProvider>
