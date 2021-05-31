@@ -46,9 +46,9 @@ export default function Index() {
   }, [])
 
   const variants = {
-    initial: {opacity: 0, x: (190 + slideOffset) * (revAnimation ? -1 : 1)},
+    initial: {opacity: 0, x: (200 + slideOffset) * (revAnimation ? -1 : 1)},
     animate: {opacity: 1, x: 0},
-    exit: {opacity: 0, x: (-190 - slideOffset) * (revAnimation ? -1 : 1)}
+    exit: {opacity: 0, x: (-200 - slideOffset) * (revAnimation ? -1 : 1)}
   }
 
   const slide = {
@@ -98,6 +98,8 @@ export default function Index() {
       } else {
         setSlideOffset(0)
       }
+
+      console.log((width - divWidth - imgOffset) / 2 - 200)
     }
   }, [width])
 
@@ -145,7 +147,7 @@ export default function Index() {
                             onAnimationComplete={() => {
                               setResetRev(prev => (prev + 1))
                             }}
-                            key={section === "saved" ? "display" : section}
+                            key={section === "saved" ? "display" : section + "eeewweeee"}
                 >
                   {section === "stdID" && <StudentID updateCred={updateCred} report={report}/>}
                   {section === "credentials" && <Credentials userCred={cred} setDisplay={setDisplay} report={report} setRev={doRev}/>}

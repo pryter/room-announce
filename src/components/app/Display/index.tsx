@@ -108,7 +108,7 @@ const Display = ({data, setRev, report }) => {
             <div className="flex space-x-1 text-gray-700 font-medium text-sm">
               <span>*</span>
               <div>
-                <p>นักเรียนควรเข้า Zoom ก่อนเวลา 08.30น.</p>
+                <p>นักเรียนควรเข้า Zoom ก่อนเวลา 08.00น.</p>
               </div>
             </div>
           </div>
