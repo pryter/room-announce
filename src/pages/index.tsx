@@ -155,9 +155,6 @@ export default function Index() {
                   {section === "report" && <Report setHide={setHide} setRev={doRev}/>}
                 </motion.div>
               </AnimatePresence>
-              {section !== "report" && !(section === "display" || section === "saved") && <motion.div layout="position">
-                  <Footer report={report}/>
-              </motion.div>}
             </AnimateSharedLayout>
           </motion.div>
         </div>

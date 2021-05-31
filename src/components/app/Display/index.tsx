@@ -12,7 +12,7 @@ import QRCode from 'qrcode'
 import Modal from "@components/common/Modals";
 import {Footer} from "@components/common/Footer";
 
-const Display = ({data, setRev, report }) => {
+const Display = ({data, setRev, report}) => {
 
   const [todoList, setTodoList] = useState({saveimg: false, line: false})
   const {section, updateTask} = useTask()
@@ -69,7 +69,7 @@ const Display = ({data, setRev, report }) => {
       y: -252
     },
     down: {
-      y:0
+      y: 0
     }
   }
 
@@ -91,7 +91,8 @@ const Display = ({data, setRev, report }) => {
           <canvas className="mx-auto mb-4" id="qrCode"/>
           <div className="text-[13px] flex flex-row space-x-1">
             <span className="text-gray-700 font-medium">URL: </span>
-            <a target="_blank" href={data.url} className="break-all cursor-pointer text-TUCMC-gray-700 hover:text-blue-600 hover:underline z-30">{data.url}</a>
+            <a target="_blank" href={data.url}
+               className="break-all cursor-pointer text-TUCMC-gray-700 hover:text-blue-600 hover:underline z-30">{data.url}</a>
           </div>
           <div>
             <div className="flex space-x-1 text-gray-700 font-medium text-sm">
@@ -114,41 +115,13 @@ const Display = ({data, setRev, report }) => {
           </div>
         </div>
       </ContentBox>
-          <div className="space-y-2.5">
-            <motion.div className="my-4">
-              <motion.div animate={qrState ? "open" : "closed"}
-                          transition={{duration: 0.5}}
-                          initial={false}
-                          variants={slide}
-              >
-                <div className={classnames("flex flex-col items-center bg-white w-full py-4 shadow-md rounded-md mt-2 space-y-2")}>
-                  <div className="relative w-[152px] h-[152px]">
-                    <canvas id="qrCode"></canvas>
-                    <div className="absolute w-[152px] h-[152px] flex items-center justify-center top-0 left-0">
-                      <LineQR className="w-8 h-8"/>
-                    </div>
-                  </div>
-                  <Button
-                          className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-2.5 w-[152px] cursor-pointer">
-                    <LoginIcon className="w-5 h-5"/>
-                    <h1 className="font-medium text-lg">เข้าร่วม</h1>
-                  </Button>
-                </div>
-              </motion.div>
-            </motion.div>
-            <div className="space-y-2.5">
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.01, duration: 0.5}}>
-                <Button onClick={back}
-                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer">
-                  <ArrowCircleLeftIcon className="w-5 h-5"/>
-                  <h1 className="font-medium text-lg">ออกจากระบบ</h1>
-                </Button>
-              </motion.div>
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.05, duration: 0.5}}>
-                {(section === "display" || section === "saved") && <Footer report={report}/>}
-              </motion.div>
-            </div>
-          </div>
+      <div className="mt-8">
+          <Button onClick={back}
+                  className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer">
+            <ArrowCircleLeftIcon className="w-5 h-5"/>
+            <h1 className="font-medium text-lg">ออกจากระบบ</h1>
+          </Button>
+      </div>
     </div>
   )
 }
