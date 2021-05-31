@@ -33,7 +33,7 @@ const Display = ({data, setRev, report}) => {
         {title: "ชื่อ", context: `${data.prefix}${data.firstname} ${data.lastname}`},
         {title: "เลขประจำตัวสอบ", context: data.stdID},
         {title: "แผนการเรียน", context: `${data.branch}${data.tag}`},
-        {title: "ข้อมูลห้อง ZOOM", context: [`Meeting ID: ${data.meetID}`, `Password: ${data.password}`]}
+        {title: `ข้อมูลห้อง ZOOM กลุ่มที่ ${data.group}`, context: [`Meeting ID: ${data.meetID}`, `Password: ${data.password}`]}
       ])
     }
   }, [data])
