@@ -76,7 +76,7 @@ export const Report = ({ setHide, setRev }) => {
             <Input updateHandler={setName} value={name} required={true}/>
           </div>
           <div className="space-y-1">
-            <h1 className="text-gray-700">เลขประจำตัวนักเรียน</h1>
+            <h1 className="text-gray-700">เลขประจำตัวสอบ</h1>
             <Input updateHandler={setStdID} value={stdID} required={true}/>
           </div>
           <div className="space-y-1">

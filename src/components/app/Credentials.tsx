@@ -33,15 +33,6 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
   }, [section])
 
   const {loading, submitFunc} = useSubmit(async () => {
-    if (lastnameStat !== "correct") return addToast({
-      color: "red", icon: "cross", text: <span>นามสกุลไม่ตรงกับข้อมูลบนฐานข้อมูล หากยังพบข้อผิดพลาดสามารถข้อแก้ไขข้อมูลได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
-      theme: "modern", title: "นามสกุลไม่ตรงกับข้อมูลบนฐานข้อมูล"
-    })
-
-    if (!(phone.length >= 9 && phone.length <= 10)) return addToast({
-      color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง เบอร์โทรศัพท์จะต้องมีความยาว 9 - 10 หลักเท่านั้น",
-      theme: "modern", title: "หมายเลขโทรศัพท์ไม่ถูกต้อง"
-    })
 
     const res = await request("data", "getData", {stdID: userCred.stdID, lastname: lastname, phone: phone})
 
@@ -83,16 +74,6 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
     }
   })
 
-  useEffect(() => {
-    if (lastname === "") return;
-    const hashed = crypto.createHash("SHA256").update(fixGrammar(lastname)).digest("base64")
-    if (hashed === fixGrammar(userCred.lastname)) {
-      setLastnameStat("correct");
-      return
-    }
-    setLastnameStat("wrong")
-  }, [lastname])
-
 
   const back = () => {
     setRev()
@@ -114,15 +95,11 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
             onChange={(event) => {
               setLastname(event.target.value)
             }}
-            className={classnames("appearance-none outline-none block w-full rounded-full px-4 h-11 shadow-sm placeholder-TUCMC-gray-400", lastnameStat === "wrong" ? "border-TUCMC-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : lastnameStat === "correct" ? "border-green-500 focus:ring-TUCMC-green-500 focus:border-TUCMC-green-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
+            className={classnames("appearance-none outline-none block w-full rounded-full px-4 h-11 shadow-sm placeholder-TUCMC-gray-400", "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
             placeholder="นามสกุล"
             value={lastname}
             required
           />
-        </div>
-        <div className="space-y-1">
-          <h1 className="text-gray-700">เบอร์โทรศัพท์</h1>
-          <Input placeholder="0985333333" updateHandler={setPhone} value={phone} required={true}/>
         </div>
         <div className="flex justify-between items-center w-full pt-4">
           <div onClick={back} className="flex text-TUCMC-gray-600 items-center space-x-1.5 cursor-pointer">

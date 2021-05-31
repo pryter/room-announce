@@ -20,9 +20,9 @@ const Display = ({data, setRev, report }) => {
   const [parsedData, setParsedData] = useState([])
 
   useEffect(() => {
-    if (data && data.lineURL) {
+    if (data && data.url) {
       const canvas = document.getElementById('qrCode')
-      QRCode.toCanvas(canvas, `${data.lineURL}`, {errorCorrectionLevel: 'M', margin: 0, width: 152, color: {dark: "#4A5568"}})
+      QRCode.toCanvas(canvas, `${data.url}`, {errorCorrectionLevel: 'M', margin: 0, width: 152, color: {dark: "#4A5568"}})
     }
   }, [data])
 
@@ -31,58 +31,12 @@ const Display = ({data, setRev, report }) => {
     if ("prefix" in data) {
       setParsedData([
         {title: "ชื่อ", context: `${data.prefix}${data.firstname} ${data.lastname}`},
-        {title: "เลขประจำตัว", context: data.stdID},
-        {title: "แผนการเรียน", context: data.branch},
-        {title: ["ชั้น", "ห้อง", "เลขที่"], context: [data.level, data.room, data.number]},
-        {title: "ครูประจำชั้น", context: data.teacher}
+        {title: "เลขประจำตัวสอบ", context: data.stdID},
+        {title: "แผนการเรียน", context: `${data.branch}${data.tag}`},
+        {title: "ข้อมูลห้อง ZOOM", context: [`Meeting ID: ${data.meetID}`, `Password: ${data.password}`]}
       ])
     }
   }, [data])
-
-  useEffect(() => {
-    if (Object.values(todoList).every(val => (val))) {
-      updateTask("saved")
-    }
-  }, [todoList])
-
-  const regButtClick = (callback, buttType: "saveimg" | "line") => {
-    callback()
-    setTodoList(prevState => ({...prevState, [buttType]: true}))
-  }
-
-  const donwloadPDF = (room, branch) => {
-    const a = document.createElement("a")
-    a.href = `/user/schedules/${room}.jpg`
-    a.download = `${room} ${branch}.jpg`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-  }
-
-  const linePopUp = (link) => {
-    const a = document.createElement("a")
-    a.href = `${link}`
-    a.target = "_blank"
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-  }
-
-  const saveImg = () => {
-    regButtClick(() => {
-      donwloadPDF(data.room, data.branch)
-    }, "saveimg")
-  }
-
-  const joinLine = () => {
-    regButtClick(() => {
-      linePopUp(data.lineURL)
-    }, "line")
-  }
-
-  const reveal = () => {
-    setQrState(prev => (!prev))
-  }
 
   const back = () => {
     setRev()
@@ -133,6 +87,32 @@ const Display = ({data, setRev, report }) => {
             })
           }
         </div>
+        <div className="space-y-8">
+          <canvas className="mx-auto mb-4" id="qrCode"/>
+          <div className="text-[13px] flex flex-row space-x-1">
+            <span className="text-gray-700 font-medium">URL: </span>
+            <a className="break-all cursor-pointer text-TUCMC-gray-700 hover:text-blue-600 hover:underline">{data.url}</a>
+          </div>
+          <div>
+            <div className="flex space-x-1 text-gray-700 font-medium text-sm">
+              <span>*</span>
+              <div>
+                <p>
+                  กิจกรรม PAE จะเริ่มในวัน พุธ ที่ 2 มิถุนายน 2564
+                </p>
+                <p>
+                  เวลา 08.00 - 15.10 น.
+                </p>
+              </div>
+            </div>
+            <div className="flex space-x-1 text-gray-700 font-medium text-sm">
+              <span>*</span>
+              <div>
+                <p>นักเรียนควรเข้า Zoom ก่อนเวลา 08.30น.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </ContentBox>
           <div className="space-y-2.5">
             <motion.div className="my-4">
@@ -148,7 +128,7 @@ const Display = ({data, setRev, report }) => {
                       <LineQR className="w-8 h-8"/>
                     </div>
                   </div>
-                  <Button onClick={joinLine}
+                  <Button
                           className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-2.5 w-[152px] cursor-pointer">
                     <LoginIcon className="w-5 h-5"/>
                     <h1 className="font-medium text-lg">เข้าร่วม</h1>
@@ -157,18 +137,6 @@ const Display = ({data, setRev, report }) => {
               </motion.div>
             </motion.div>
             <div className="space-y-2.5">
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}} className="flex space-x-2.5 mt-6">
-                <Button onClick={saveImg}
-                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
-                  <ArrowCircleDownIcon className="w-5 h-5"/>
-                  <h1 className="font-medium text-lg">ตารางเรียน</h1>
-                </Button>
-                <Button onClick={reveal}
-                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-1/2 cursor-pointer">
-                  <Line className="w-5 h-5"/>
-                  <h1 className="font-medium text-lg">กลุ่มไลน์</h1>
-                </Button>
-              </motion.div>
               <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.01, duration: 0.5}}>
                 <Button onClick={back}
                         className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer">

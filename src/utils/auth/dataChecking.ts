@@ -4,9 +4,10 @@ import Cookies from "cookies"
 import crypto from "crypto"
 import aes256 from "aes256"
 import {fixGrammar} from "@utils/text";
+import {roomData} from "../../configs/roomData";
 
 const isValidStdID = (id: string) => {
-  return id.length === 5;
+  return id.length === 7;
 
 }
 
@@ -20,7 +21,7 @@ export const checkID = async (req, res) => {
   const body = req.body
 
   if (!isValidStdID(body.stdID)) return updateStatus(initialStatus, "report", "invalid_stdID")
-  const data = await initialiseDB().collection("data").doc(body.stdID).get()
+  const data = await initialiseDB().collection("datam4").doc(body.stdID).get()
   if (!data.exists) return updateStatus(initialStatus, "report", "missing_stdID")
   const userCred = data.data()
 
@@ -34,16 +35,14 @@ export const getData = async (req, res) => {
   const body = req.body
 
   if (!isValidStdID(body.stdID)) return updateStatus(initialStatus, "report", "invalid_stdID")
-  const data = await initialiseDB().collection("data").doc(body.stdID).get()
+  const data = await initialiseDB().collection("datam4").doc(body.stdID).get()
   if (!data.exists) return updateStatus(initialStatus, "report", "missing_stdID")
   const userCred = data.data()
-  if (fixGrammar(body.lastname) !== fixGrammar(userCred.lastname)) return updateStatus(initialStatus, "report", "not_matched_lastname")
-  if (!isBetween(body.phone.length,8,11)) return updateStatus(initialStatus, "report", "invalid_phone")
   const fpArr = "fp" in userCred ? userCred.fp : []
   const updatedArr = [body.fp ? body.fp : "", ...fpArr]
-  await data.ref.update({phone: body.phone, fp: Array.from(new Set(updatedArr))})
+  await data.ref.update({fp: Array.from(new Set(updatedArr))})
 
-  const encrypted = aes256.encrypt(process.env.DATA_KEY, JSON.stringify(userCred))
+  const encrypted = aes256.encrypt(process.env.DATA_KEY, JSON.stringify({...userCred, ...roomData[parseInt(userCred.group)]}))
   const cookies = new Cookies(req, res, {keys: [process.env.COOKIE_KEY]})
   const expiresTime = (new Date().getTime()) + 24 * 60 * 60 * 1000;
 
@@ -54,7 +53,7 @@ export const getData = async (req, res) => {
     expires: new Date(expiresTime)
   })
 
-  return updateStatus(initialStatus, {status: true, report: "success", data: userCred})
+  return updateStatus(initialStatus, {status: true, report: "success", data: {...userCred, ...roomData[parseInt(userCred.group)]}})
 }
 
 export const fetchPrevData = async (req, res) => {
@@ -67,7 +66,7 @@ export const fetchPrevData = async (req, res) => {
   const decrypted = await aes256.decrypt(process.env.DATA_KEY, prev)
   if (!decrypted) return updateStatus(initialStatus, "report", "error")
   const parsed = JSON.parse(decrypted)
-  if (Object.keys(parsed).length < 10) return updateStatus(initialStatus, "report", "error")
+  if (Object.keys(parsed).length < 4) return updateStatus(initialStatus, "report", "error")
 
   return updateStatus(initialStatus, {status: true, report: "success", data: parsed})
 }

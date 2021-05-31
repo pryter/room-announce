@@ -6,7 +6,7 @@ export const submitReport = async (req,res) => {
   const body = req.body
 
   if (!(body.name && body.stdID && body.phone && body.email && body.issue)) return updateStatus(initialStatus, "report", "invalid_data")
-  await initialiseDB().collection("report").add({
+  await initialiseDB().collection("reportm4").add({
     name: body.name,
     stdID: body.stdID,
     phone: body.phone,

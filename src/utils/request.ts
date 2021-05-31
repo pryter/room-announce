@@ -11,6 +11,8 @@ export const request = async (path: string, action: string, data: {}): Promise<S
     ...data
   }
 
+  console.log(data)
+
   try {
     const res = await fetch(`/api/${path}`, {
       method: 'POST',
