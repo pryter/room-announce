@@ -46,9 +46,9 @@ export default function Index() {
   }, [])
 
   const variants = {
-    initial: {opacity: 0, x: (200 + slideOffset) * (revAnimation ? -1 : 1)},
+    initial: {opacity: 0, x: (190 + slideOffset) * (revAnimation ? -1 : 1)},
     animate: {opacity: 1, x: 0},
-    exit: {opacity: 0, x: (-200 - slideOffset) * (revAnimation ? -1 : 1)}
+    exit: {opacity: 0, x: (-190 - slideOffset) * (revAnimation ? -1 : 1)}
   }
 
   const slide = {
