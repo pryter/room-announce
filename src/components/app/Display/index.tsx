@@ -91,7 +91,7 @@ const Display = ({data, setRev, report }) => {
           <canvas className="mx-auto mb-4" id="qrCode"/>
           <div className="text-[13px] flex flex-row space-x-1">
             <span className="text-gray-700 font-medium">URL: </span>
-            <a className="break-all cursor-pointer text-TUCMC-gray-700 hover:text-blue-600 hover:underline">{data.url}</a>
+            <a target="_blank" href={data.url} className="break-all cursor-pointer text-TUCMC-gray-700 hover:text-blue-600 hover:underline z-30">{data.url}</a>
           </div>
           <div>
             <div className="flex space-x-1 text-gray-700 font-medium text-sm">
