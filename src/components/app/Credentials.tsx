@@ -49,13 +49,13 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
           break
         case "missing_stdID":
           addToast({
-            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดสามารถข้อแก้ไขข้อมูลได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
+            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดให้ติดต่อทางโรงเรียน</span>,
             theme: "modern", title: "ไม่พบรหัสนประจำตัวสอบนี้ในฐานข้อมูล"
           })
           break
         case "not_matched_lastname":
           addToast({
-            color: "red", icon: "cross", text: <span>นามสกุลไม่ตรงกับข้อมูลบนฐานข้อมูล หากยังพบข้อผิดพลาดสามารถข้อแก้ไขข้อมูลได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
+            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดให้ติดต่อทางโรงเรียน</span>,
             theme: "modern", title: "กรุณาลองกรอกใหม่อีกครั้ง"
           })
           break
@@ -67,7 +67,7 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
           break
         default:
           addToast({
-            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดสามารถรายงานปัญหาได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
+            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดให้ติดต่อทางโรงเรียน</span>,
             theme: "modern", title: "พบข้อผิดพลาดที่ไม่ทราบสาเหตุ"
           })
       }

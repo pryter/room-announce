@@ -33,14 +33,14 @@ export const StudentID = ({updateCred, report}) => {
           break
         case "missing_stdID":
           addToast({
-            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดสามารถข้อแก้ไขข้อมูลได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
+            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดให้ติดต่อทางโรงเรียน</span>,
             theme: "modern", title: "ไม่พบรหัสประจำตัวสอบนี้ในฐานข้อมูล"
           })
           setWarning(true)
           break
         default:
           addToast({
-            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดสามารถรายงานปัญหาได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
+            color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดให้ติดต่อทางโรงเรียน</span>,
             theme: "modern", title: "พบข้อผิดพลาดที่ไม่ทราบสาเหตุ"
           })
       }
