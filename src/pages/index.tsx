@@ -155,6 +155,9 @@ export default function Index() {
                   {section === "report" && <Report setHide={setHide} setRev={doRev}/>}
                 </motion.div>
               </AnimatePresence>
+              <motion.div layout="position">
+                  <Footer report={report}/>
+              </motion.div>
             </AnimateSharedLayout>
           </motion.div>
         </div>
