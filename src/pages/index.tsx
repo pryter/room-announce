@@ -117,7 +117,7 @@ export default function Index() {
     setRevAnimation(true)
   }
 
-  return (<div className="lg:flex lg:min-h-[1600px]">
+  return (<div className="lg:flex lg:min-h-[1953px]">
       <div className="flex-shrink hidden lg:block w-[431px] relative min-h-screen">
         <Image src="/assets/images/splash.jpg" layout="fill" className="object-cover"/>
       </div>

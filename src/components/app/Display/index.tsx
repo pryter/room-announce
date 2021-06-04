@@ -1,7 +1,7 @@
 import ContentBox from "@components/common/ContentBox";
 import {DataRow} from "@components/app/Display/DataRow";
 import Button from "@components/common/Button";
-import {ArrowCircleDownIcon, ArrowCircleLeftIcon, ArrowLeftIcon} from "@heroicons/react/solid";
+import {ArrowCircleDownIcon, ArrowCircleLeftIcon, ArrowLeftIcon, DocumentTextIcon} from "@heroicons/react/solid";
 import {LoginIcon} from "@heroicons/react/outline";
 import {Line, LineQR} from "../../../vectors/Logo/Line";
 import {useEffect, useState} from "react";
@@ -74,6 +74,15 @@ const Display = ({data, setRev, report }) => {
     }, "saveimg")
   }
 
+  const loadPDF = () => {
+    const a = document.createElement("a")
+    a.href = `/user/pae.pdf`
+    a.download = `เอกสาร PAE 2564.pdf`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
+
   const joinLine = () => {
     regButtClick(() => {
       linePopUp(data.lineURL)
@@ -138,10 +147,11 @@ const Display = ({data, setRev, report }) => {
               <p className="text-TUCMC-gray-600 pt-2">{data.accounts.mails.prefix}@365.triamudom.ac.th</p>
               <p className="text-TUCMC-gray-600">Password: {data.accounts.mails.password}</p></div>
           </div>
-            <div className="space-y-1.5 mt-2"><h1 className="text-gray-700 font-medium">รหัส Wi-Fi</h1>
+            <div className="space-y-1.5 pt-4"><h1 className="text-gray-700 font-medium">รหัส Wi-Fi</h1>
             <div className="space-y-1"><p className="text-TUCMC-gray-600">Username: {data.accounts.wifi.user}</p>
             <p className="text-TUCMC-gray-600">Password: {data.accounts.wifi.password}</p></div>
-            </div></>}
+            </div>
+          </>}
         </div>
       </ContentBox>
           <div className="space-y-2.5">
@@ -180,14 +190,21 @@ const Display = ({data, setRev, report }) => {
                 </Button>
               </motion.div>
               <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.01, duration: 0.5}}>
+                <Button onClick={loadPDF}
+                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-full cursor-pointer">
+                  <DocumentTextIcon className="w-5 h-5"/>
+                  <h1 className="font-medium text-lg">เอกสาร PAE ย้อนหลัง</h1>
+                </Button>
+              </motion.div>
+              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.04, duration: 0.5}}>
                 <Button onClick={back}
-                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer">
+                        className="flex justify-center items-center space-x-2.5 mt-12 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer">
                   <ArrowCircleLeftIcon className="w-5 h-5"/>
                   <h1 className="font-medium text-lg">ออกจากระบบ</h1>
                 </Button>
               </motion.div>
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.05, duration: 0.5}}>
-                {(section === "display" || section === "saved") && <Footer report={report}/>}
+              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.09, duration: 0.5}}>
+                {(section === "display" || section === "saved") && <Footer report={report} padding={false}/>}
               </motion.div>
             </div>
           </div>
