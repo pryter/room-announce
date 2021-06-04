@@ -4,10 +4,10 @@ import Cookies from "cookies"
 import crypto from "crypto"
 import aes256 from "aes256"
 import {fixGrammar} from "@utils/text";
-import {scheduled} from "../../configs/timer";
+import {getTime, getUTC7, scheduled} from "../../configs/timer";
 
 const isValidStdID = (id: string) => {
-  return scheduled(id.length === 5,id.length === 7 || id.length === 5);
+  return getUTC7() >= getTime() ? id.length === 7 || id.length === 5 : id.length === 5
 
 }
 
