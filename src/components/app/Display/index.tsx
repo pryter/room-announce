@@ -179,11 +179,11 @@ const Display = ({data, setRev, report }) => {
             </motion.div>
             <div className="space-y-2.5">
               {
-                scheduled(<>
+                !data.accounts ? <>
                   <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}} className="flex space-x-2.5 mt-6">
                     <Button onClick={saveImg}
                             className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
-                      <ArrowCircleDownIcon className="w-5 h-5"/>
+                      <CalendarIcon className="w-5 h-5"/>
                       <h1 className="font-medium text-lg">ตารางเรียน</h1>
                     </Button>
                     <Button onClick={reveal}
@@ -192,7 +192,7 @@ const Display = ({data, setRev, report }) => {
                       <h1 className="font-medium text-lg">กลุ่มไลน์</h1>
                     </Button>
                   </motion.div>
-                </>,<>
+                </> : <>
                   <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}}>
                     <Button onClick={reveal}
                             className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-full cursor-pointer">
@@ -212,17 +212,17 @@ const Display = ({data, setRev, report }) => {
                       <h1 className="font-medium text-lg">เอกสาร PAE</h1>
                     </Button>
                   </motion.div>
-                </>)
+                </>
               }
               <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: scheduled(0.01, 0.04), duration: 0.5}}>
                 <Button onClick={back}
-                        className={classnames("flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer", scheduled("", "mt-12"))}>
+                        className={classnames("flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer", !data.accounts ? "": "mt-12")}>
                   <ArrowCircleLeftIcon className="w-5 h-5"/>
                   <h1 className="font-medium text-lg">ออกจากระบบ</h1>
                 </Button>
               </motion.div>
               <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: scheduled(0.05, 0.09), duration: 0.5}}>
-                {(section === "display" || section === "saved") && <Footer report={report} padding={scheduled(true, false)}/>}
+                {(section === "display" || section === "saved") && <Footer report={report} padding={!data.accounts}/>}
               </motion.div>
             </div>
           </div>
