@@ -68,7 +68,7 @@ export const StudentID = ({updateCred, report}) => {
               setWarning(false)
             }}
             className={classnames("appearance-none outline-none block w-56 rounded-full px-4 h-11 placeholder-TUCMC-gray-400", warning ? "border-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
-            placeholder={placeholder}
+            placeholder={getUTC7().toString()}
             required
           />
           <Button type="submit"
