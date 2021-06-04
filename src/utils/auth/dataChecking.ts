@@ -4,9 +4,10 @@ import Cookies from "cookies"
 import crypto from "crypto"
 import aes256 from "aes256"
 import {fixGrammar} from "@utils/text";
+import {getTime, getUTC7} from "../../configs/timer";
 
 const isValidStdID = (id: string) => {
-  return id.length === 5;
+  return getUTC7() >= getTime() ? (id.length === 7 || id.length === 5) : id.length === 5
 
 }
 
@@ -26,7 +27,7 @@ export const checkID = async (req, res) => {
 
   const hashedLastname = crypto.createHash("SHA256").update(fixGrammar(userCred.lastname)).digest("base64")
 
-  return updateStatus(initialStatus, {status: true, report: "success", data: {stdID: userCred.stdID, firstname: userCred.firstname, lastname: hashedLastname}})
+  return updateStatus(initialStatus, {status: true, report: "success", data: {stdID: data.id, firstname: userCred.firstname, lastname: hashedLastname}})
 }
 
 export const getData = async (req, res) => {

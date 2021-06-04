@@ -11,6 +11,7 @@ import {request} from "@utils/request";
 import {ArrowCircleLeftIcon} from "@heroicons/react/solid";
 import {Ellipsis} from "../../vectors/Loaders/Ellipsis";
 import {fixGrammar} from "@utils/text";
+import {scheduled} from "../../configs/timer";
 
 export const Credentials = ({userCred, setDisplay, report, setRev}) => {
 
@@ -52,14 +53,14 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
       switch (res.report) {
         case "invalid_stdID":
           addToast({
-            color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 หลักและเป็นตัวเลขทั้งหมด",
-            theme: "modern", title: "รหัสนักเรียนไม่ถูกต้อง"
+            color: "red", icon: "cross", text: scheduled("กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 หลักและเป็นตัวเลขทั้งหมด","กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 หลักหากเป็นรหัสประจำตัวสอบจะต้องมีความยาว 7 หลักและเป็นตัวเลขทั้งหมด"),
+            theme: "modern", title: scheduled("รหัสนักเรียนไม่ถูกต้อง","รหัสนักเรียนหรือรหัสประจำตัวสอบไม่ถูกต้อง")
           })
           break
         case "missing_stdID":
           addToast({
             color: "red", icon: "cross", text: <span>กรุณาลองกรอกใหม่อีกครั้ง หากยังพบข้อผิดพลาดสามารถข้อแก้ไขข้อมูลได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
-            theme: "modern", title: "ไม่พบรหัสนักเรียนนี้ในฐานข้อมูล"
+            theme: "modern", title: scheduled("ไม่พบรหัสนักเรียนนี้ในฐานข้อมูล","ไม่พบรหัสนักเรียนหรือรหัสประจำตัวสอบนี้ในฐานข้อมูล")
           })
           break
         case "not_matched_lastname":
