@@ -1,4 +1,4 @@
-const time = 1622854680 * 1000
+const time = 1622835300 * 1000
 
 export const getTime = () => {
   return time
