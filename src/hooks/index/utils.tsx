@@ -3,7 +3,7 @@ import React from "react";
 export const updateTaskfromSection = (setTasks, section) => {
 
   if (section === "stdID") {
-    setTasks([{title: <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ</p></>, status: "current"}, {
+    setTasks([{title: <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 7 หลัก</p></>, status: "current"}, {
       title: "กรอกข้อมูลส่วนตัว", status: "pending"
     }, {title: <><p>ดาวน์โหลดเอกสารที่เกี่ยวข้อง</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, status: "pending"}])
   }
