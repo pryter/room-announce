@@ -12,13 +12,15 @@ const getTime = () => {
 }
 
 const getUTC7 = () => {
-  const current = new Date().getTime()
-  const timeZoneOffset = (new Date().getTimezoneOffset()) * (-1) * (60 * 1000)
+  const date = new Date()
+  const current = date.getTime()
+  const timeZoneOffset = (date.getTimezoneOffset()) * (-1) * (60 * 1000)
 
   return current - timeZoneOffset + (7 * 60 * 60 * 1000)
 }
 
 const isValidStdID = (id: string) => {
+  console.log(getUTC7(), getTime())
   return getUTC7() >= getTime() ? (id.length === 7 || id.length === 5) : id.length === 5
 
 }
