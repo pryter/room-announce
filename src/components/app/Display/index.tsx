@@ -1,7 +1,7 @@
 import ContentBox from "@components/common/ContentBox";
 import {DataRow} from "@components/app/Display/DataRow";
 import Button from "@components/common/Button";
-import {ArrowCircleDownIcon, ArrowCircleLeftIcon, ArrowLeftIcon, DocumentTextIcon} from "@heroicons/react/solid";
+import {ArrowCircleDownIcon, ArrowCircleLeftIcon, ArrowLeftIcon, CalendarIcon, DocumentTextIcon} from "@heroicons/react/solid";
 import {LoginIcon} from "@heroicons/react/outline";
 import {Line, LineQR} from "../../../vectors/Logo/Line";
 import {useEffect, useState} from "react";
@@ -11,6 +11,7 @@ import {AnimatePresence, AnimateSharedLayout, motion} from "framer-motion"
 import QRCode from 'qrcode'
 import Modal from "@components/common/Modals";
 import {Footer} from "@components/common/Footer";
+import {scheduled} from "../../../configs/timer";
 
 const Display = ({data, setRev, report }) => {
 
@@ -177,34 +178,51 @@ const Display = ({data, setRev, report }) => {
               </motion.div>
             </motion.div>
             <div className="space-y-2.5">
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}} className="flex space-x-2.5 mt-6">
-                <Button onClick={saveImg}
-                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
-                  <ArrowCircleDownIcon className="w-5 h-5"/>
-                  <h1 className="font-medium text-lg">ตารางเรียน</h1>
-                </Button>
-                <Button onClick={reveal}
-                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-1/2 cursor-pointer">
-                  <Line className="w-5 h-5"/>
-                  <h1 className="font-medium text-lg">กลุ่มไลน์</h1>
-                </Button>
-              </motion.div>
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.01, duration: 0.5}}>
-                <Button onClick={loadPDF}
-                        className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-full cursor-pointer">
-                  <DocumentTextIcon className="w-5 h-5"/>
-                  <h1 className="font-medium text-lg">เอกสาร PAE ย้อนหลัง</h1>
-                </Button>
-              </motion.div>
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.04, duration: 0.5}}>
+              {
+                scheduled(<>
+                  <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}} className="flex space-x-2.5 mt-6">
+                    <Button onClick={saveImg}
+                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
+                      <ArrowCircleDownIcon className="w-5 h-5"/>
+                      <h1 className="font-medium text-lg">ตารางเรียน</h1>
+                    </Button>
+                    <Button onClick={reveal}
+                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-1/2 cursor-pointer">
+                      <Line className="w-5 h-5"/>
+                      <h1 className="font-medium text-lg">กลุ่มไลน์</h1>
+                    </Button>
+                  </motion.div>
+                </>,<>
+                  <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}}>
+                    <Button onClick={reveal}
+                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-full cursor-pointer">
+                      <Line className="w-5 h-5"/>
+                      <h1 className="font-medium text-lg">กลุ่มไลน์</h1>
+                    </Button>
+                  </motion.div>
+                  <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.01, duration: 0.5}} className="flex space-x-2.5 mt-6">
+                    <Button onClick={saveImg}
+                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
+                      <CalendarIcon className="w-5 h-5"/>
+                      <h1 className="font-medium text-lg">ตารางเรียน</h1>
+                    </Button>
+                    <Button onClick={loadPDF}
+                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
+                      <DocumentTextIcon className="w-5 h-5"/>
+                      <h1 className="font-medium text-lg">เอกสาร PAE</h1>
+                    </Button>
+                  </motion.div>
+                </>)
+              }
+              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: scheduled(0.01, 0.04), duration: 0.5}}>
                 <Button onClick={back}
-                        className="flex justify-center items-center space-x-2.5 mt-12 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer">
+                        className={classnames("flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer", scheduled("", "mt-12"))}>
                   <ArrowCircleLeftIcon className="w-5 h-5"/>
                   <h1 className="font-medium text-lg">ออกจากระบบ</h1>
                 </Button>
               </motion.div>
-              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.09, duration: 0.5}}>
-                {(section === "display" || section === "saved") && <Footer report={report} padding={false}/>}
+              <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: scheduled(0.05, 0.09), duration: 0.5}}>
+                {(section === "display" || section === "saved") && <Footer report={report} padding={scheduled(true, false)}/>}
               </motion.div>
             </div>
           </div>

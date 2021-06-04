@@ -9,6 +9,7 @@ import {request} from "@utils/request";
 import {useToast} from "@components/common/Toast/ToastContext";
 import {useSubmit} from "../../hooks/submitForms";
 import {Spinner} from "../../vectors/Loaders/Spinner";
+import {scheduled} from "../../configs/timer";
 
 export const StudentID = ({updateCred, report}) => {
 
@@ -26,8 +27,8 @@ export const StudentID = ({updateCred, report}) => {
       switch (res.report) {
         case "invalid_stdID":
           addToast({
-            color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 หลักหากเป็นรหัสประจำตัวสอบจะต้องมีความยาว 7 หลักและเป็นตัวเลขทั้งหมด",
-            theme: "modern", title: "รหัสนักเรียนหรือรหัสประจำตัวสอบไม่ถูกต้อง"
+            color: "red", icon: "cross", text: scheduled("กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 หลักและเป็นตัวเลขทั้งหมด","กรุณาลองกรอกใหม่อีกครั้ง รหัสนักเรียนจะต้องมีความยาว 5 หลักหากเป็นรหัสประจำตัวสอบจะต้องมีความยาว 7 หลักและเป็นตัวเลขทั้งหมด"),
+            theme: "modern", title: scheduled("รหัสนักเรียนไม่ถูกต้อง","รหัสนักเรียนหรือรหัสประจำตัวสอบไม่ถูกต้อง")
           })
           setWarning(true)
           break
@@ -60,7 +61,7 @@ export const StudentID = ({updateCred, report}) => {
               setWarning(false)
             }}
             className={classnames("appearance-none outline-none block w-56 rounded-full px-4 h-11 placeholder-TUCMC-gray-400", warning ? "border-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
-            placeholder="เลขประจำตัวสอบ / นักเรียน"
+            placeholder={scheduled("เลขประจำตัวนักเรียน","เลขประจำตัวสอบ / นักเรียน")}
             required
           />
           <Button type="submit"

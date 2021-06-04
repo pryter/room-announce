@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {useTaskState} from "../hooks/index/states";
 import {updateTaskfromSection} from "../hooks/index/utils";
 import {request} from "@utils/request";
+import {scheduled} from "../configs/timer";
 
 interface TaskContext {
   section: string,
@@ -35,9 +36,9 @@ const taskAction = () => {
 
   const reset = async () => {
     await request("data", "destroyCookie", {})
-    setTasks([{title: <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 7 หลัก</p></>, status: "current"}, {
+    setTasks([{title: scheduled("กรอกเลขประจำตัวนักเรียน", <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 7 หลัก</p></>), status: "current"}, {
       title: "กรอกข้อมูลส่วนตัว", status: "pending"
-    }, {title: <><p>ดาวน์โหลดเอกสารที่เกี่ยวข้อง</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, status: "pending"}])
+    }, {title: scheduled(<><p>ดาวน์โหลดตารางเรียน</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, <><p>ดาวน์โหลดเอกสารที่เกี่ยวข้อง</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>), status: "pending"}])
     setSection("stdID")
   }
 
