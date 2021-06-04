@@ -37,7 +37,7 @@ const taskAction = () => {
     await request("data", "destroyCookie", {})
     setTasks([{title: <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 7 หลัก</p></>, status: "current"}, {
       title: "กรอกข้อมูลส่วนตัว", status: "pending"
-    }, {title: <><p>ดาวน์โหลดตารางเรียน</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, status: "pending"}])
+    }, {title: <><p>ดาวน์โหลดเอกสารที่เกี่ยวข้อง</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, status: "pending"}])
     setSection("stdID")
   }
 
