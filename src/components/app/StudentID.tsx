@@ -3,7 +3,7 @@ import {ChevronRightIcon} from "@heroicons/react/solid";
 import {motion} from "framer-motion"
 import Button from "@components/common/Button";
 import {useTask} from "../../contexts/task";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import classnames from "classnames"
 import {request} from "@utils/request";
 import {useToast} from "@components/common/Toast/ToastContext";
@@ -15,6 +15,8 @@ export const StudentID = ({updateCred, report}) => {
 
   const [stdID, setStdID] = useState("")
   const [warning, setWarning] = useState(false)
+  const [placeholder, setPlaceHolder] = useState(getUTC7() >= getTime() ? "เลขประจำตัวสอบ / นักเรียน" : "เลขประจำตัวนักเรียน")
+
   const {updateTask} = useTask()
   const {addToast} = useToast()
 
@@ -48,6 +50,11 @@ export const StudentID = ({updateCred, report}) => {
     }
   })
 
+  useEffect(() => {
+    console.log(getUTC7(),getTime() )
+    setPlaceHolder(getUTC7() >= getTime() ? "เลขประจำตัวสอบ / นักเรียน" : "เลขประจำตัวนักเรียน")
+  },[])
+
   return (
     <ContentBox className="flex justify-center items-center py-10 mt-6">
       <form onSubmit={submitFunc}>
@@ -61,7 +68,7 @@ export const StudentID = ({updateCred, report}) => {
               setWarning(false)
             }}
             className={classnames("appearance-none outline-none block w-56 rounded-full px-4 h-11 placeholder-TUCMC-gray-400", warning ? "border-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
-            placeholder={getUTC7() >= getTime() ? "เลขประจำตัวสอบ / นักเรียน" : "เลขประจำตัวนักเรียน"}
+            placeholder={placeholder}
             required
           />
           <Button type="submit"
