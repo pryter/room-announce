@@ -4,10 +4,22 @@ import Cookies from "cookies"
 import crypto from "crypto"
 import aes256 from "aes256"
 import {fixGrammar} from "@utils/text";
-import {getTime, getUTC7, scheduled} from "../../configs/timer";
+
+const time = 1622854680 * 1000
+
+const getTime = () => {
+  return time
+}
+
+const getUTC7 = () => {
+  const current = new Date().getTime()
+  const timeZoneOffset = (new Date().getTimezoneOffset()) * (-1) * (60 * 1000)
+
+  return current - timeZoneOffset + (7 * 60 * 60 * 1000)
+}
 
 const isValidStdID = (id: string) => {
-  return getUTC7() >= getTime() ? id.length === 7 || id.length === 5 : id.length === 5
+  return getUTC7() >= getTime() ? (id.length === 7 || id.length === 5) : id.length === 5
 
 }
 
