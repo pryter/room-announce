@@ -132,6 +132,16 @@ const Display = ({data, setRev, report }) => {
               return <DataRow key={`row-${index}`} data={item}/>
             })
           }
+          {data.accounts && <><div className="space-y-1.5 pt-4"><h1 className="text-gray-700 font-medium">อีเมลโรงเรียน</h1>
+            <div className="space-y-1"><p className="text-TUCMC-gray-600">{data.accounts.mails.prefix}@student.triamudom.ac.th</p>
+              <p className="text-TUCMC-gray-600">Password: {data.accounts.mails.password}</p>
+              <p className="text-TUCMC-gray-600 pt-2">{data.accounts.mails.prefix}@365.triamudom.ac.th</p>
+              <p className="text-TUCMC-gray-600">Password: {data.accounts.mails.password}</p></div>
+          </div>
+            <div className="space-y-1.5 mt-2"><h1 className="text-gray-700 font-medium">รหัส Wi-Fi</h1>
+            <div className="space-y-1"><p className="text-TUCMC-gray-600">Username: {data.accounts.wifi.user}</p>
+            <p className="text-TUCMC-gray-600">Password: {data.accounts.wifi.password}</p></div>
+            </div></>}
         </div>
       </ContentBox>
           <div className="space-y-2.5">
