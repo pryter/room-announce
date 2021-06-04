@@ -5,12 +5,7 @@ export const getTime = () => {
 }
 
 export const getUTC7 = () => {
-  const current = new Date().getTime()
-  const timeZoneOffset = (new Date().getTimezoneOffset()) * (60 * 1000)
-
-  console.log(current, timeZoneOffset)
-
-  return current + timeZoneOffset + (7 * 60 * 60 * 1000)
+  return new Date().getTime()
 }
 
 export const scheduled = (before, after) => {
