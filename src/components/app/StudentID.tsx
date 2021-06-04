@@ -50,7 +50,7 @@ export const StudentID = ({updateCred, report}) => {
 
   return (
     <ContentBox className="flex justify-center items-center py-10 mt-6">
-      {scheduled(<form onSubmit={submitFunc}>
+      <form onSubmit={submitFunc}>
         <div className="relative">
           <input
             type="text"
@@ -60,31 +60,22 @@ export const StudentID = ({updateCred, report}) => {
             onFocus={() => {
               setWarning(false)
             }}
-            className={classnames("appearance-none outline-none block w-56 rounded-full px-4 h-11 placeholder-TUCMC-gray-400", warning ? "border-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
+            className={classnames("appearance-none outline-none block w-56 rounded-full px-4 h-11 placeholder-TUCMC-gray-400", warning ? "border-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500", scheduled("", "hidden"))}
             placeholder="เลขประจำตัวนักเรียน"
             required
           />
-          <Button type="submit"
-                  disabled={loading}
-                  className={classnames("absolute w-11 h-11 rounded-full flex items-center justify-center top-0 right-0 cursor-pointer", loading ? "" : "bg-TUCMC-pink-400")}>
-            <ChevronRightIcon className={classnames("w-5 h-5 text-white", loading && "hidden")}/>
-            <Spinner className={classnames("w-9 h-9", !loading && "hidden")}/>
-          </Button>
-        </div>
-      </form>, <form onSubmit={submitFunc}>
-        <div className="relative">
           <input
-            type="text"
-            onChange={(event) => {
-              setStdID(event.target.value)
-            }}
-            onFocus={() => {
-              setWarning(false)
-            }}
-            className={classnames("appearance-none outline-none block w-56 rounded-full px-4 h-11 placeholder-TUCMC-gray-400", warning ? "border-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
-            placeholder="เลขประจำตัวสอบ / นักเรียน"
-            required
-          />
+          type="text"
+          onChange={(event) => {
+            setStdID(event.target.value)
+          }}
+          onFocus={() => {
+            setWarning(false)
+          }}
+          className={classnames("appearance-none outline-none block w-56 rounded-full px-4 h-11 placeholder-TUCMC-gray-400", warning ? "border-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500", scheduled("hidden", ""))}
+          placeholder="เลขประจำตัวสอบ / นักเรียน"
+          required
+        />
           <Button type="submit"
                   disabled={loading}
                   className={classnames("absolute w-11 h-11 rounded-full flex items-center justify-center top-0 right-0 cursor-pointer", loading ? "" : "bg-TUCMC-pink-400")}>
@@ -92,7 +83,7 @@ export const StudentID = ({updateCred, report}) => {
             <Spinner className={classnames("w-9 h-9", !loading && "hidden")}/>
           </Button>
         </div>
-      </form>)}
+      </form>
     </ContentBox>
   )
 }
