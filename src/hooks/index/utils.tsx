@@ -4,7 +4,7 @@ import {scheduled} from "../../configs/timer";
 export const updateTaskfromSection = (setTasks, section) => {
 
   if (section === "stdID") {
-    setTasks([{title: scheduled("กรอกเลขประจำตัวนักเรียน", <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 6 หลัก</p></>), status: "current"}, {
+    setTasks([{title: scheduled("กรอกเลขประจำตัวนักเรียน", <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 5 หลัก</p></>), status: "current"}, {
       title: "กรอกข้อมูลส่วนตัว", status: "pending"
     }, {title: <><p>ตรวจสอบข้อมูล และ</p><p>บันทึกภาพหน้าจอไว้เป็นหลักฐาน</p></>, status: "pending"}])
   }
