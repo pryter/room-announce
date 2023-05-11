@@ -6,7 +6,7 @@ export const StatusItem = ({ taskStatus, selfSection, index }) => {
 
   return (
     <div className={classnames("flex items-center border -m-px space-x-4 py-4 px-6", selfSection == "top"? "rounded-t-md" : selfSection == "bottom" && "rounded-b-md")}>
-      <div className={classnames("flex justify-center items-center text-white rounded-full w-10 h-10 flex-shrink-0", taskStatus.status === "success" ? "bg-TUCMC-pink-400" : taskStatus.status === "current" ? "border-2 border-TUCMC-pink-400" : "border-2 border-gray-300")}>
+      <div className={classnames("flex justify-center items-center text-white rounded-full w-10 h-10 flex-shrink-0", taskStatus.status === "success" ? "bg-TUCMC-pink-400" : taskStatus.status === "current" ? "border-2 border-TUCMC-pink-400 bg-white" : "border-2 border-gray-300 bg-white")}>
         {
           taskStatus.status === "success" ? <CheckIcon className="w-6 h-6"/> : <h1 className={classnames("text-sm font-medium", taskStatus.status === "current" ? "text-TUCMC-pink-400" : "text-gray-500")}>0{index}</h1>
         }

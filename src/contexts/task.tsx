@@ -36,9 +36,9 @@ const taskAction = () => {
 
   const reset = async () => {
     await request("data", "destroyCookie", {})
-    setTasks([{title: scheduled("กรอกเลขประจำตัวนักเรียน", <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 7 หลัก</p></>), status: "current"}, {
+    setTasks([{title: scheduled("กรอกเลขประจำตัวนักเรียน", <><p>กรอกเลขประจำตัวนักเรียน</p><p>หรือ เลขประจำตัวสอบ 6 หลัก</p></>), status: "current"}, {
       title: "กรอกข้อมูลส่วนตัว", status: "pending"
-    }, {title: scheduled(<><p>ดาวน์โหลดตารางเรียน</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>, <><p>ดาวน์โหลดเอกสารที่เกี่ยวข้อง</p><p>และเข้ากลุ่มไลน์ห้องเรียน</p></>), status: "pending"}])
+    }, {title: <><p>ตรวจสอบข้อมูล และ</p><p>บันทึกภาพหน้าจอไว้เป็นหลักฐาน</p></>, status: "pending"}])
     setSection("stdID")
   }
 

@@ -7,6 +7,11 @@ module.exports = {
   ],
   darkMode: false,
   theme: {
+    screens: {
+      'sm': '576px',
+      'md': '960px',
+      'lg': '1440px',
+    },
     fontFamily: {
       sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       display: [

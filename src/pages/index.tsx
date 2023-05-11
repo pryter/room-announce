@@ -117,12 +117,18 @@ export default function Index() {
     setRevAnimation(true)
   }
 
-  return (<div className="lg:flex lg:min-h-[1953px]">
-      <div className="flex-shrink hidden lg:block w-[431px] relative min-h-screen">
-        <Image src="/assets/images/splash.jpg" layout="fill" className="object-cover"/>
-      </div>
-      <div className="lg:mx-auto lg:px-6">
-        <div className="pt-12 pb-20 space-y-6 px-6 max-w-[405px] mx-auto lg:min-w-[405px] lg:mt-20">
+  return (<div className="relative">
+      <div className="lg:mx-auto lg:px-6 z-4">
+        <div className="pt-12 pb-20 space-y-6 px-6 max-w-[405px] mx-auto lg:min-w-[405px] md:mt-20">
+          <div className="hidden md:block fixed top-0 left-0 z-2 h-[100vh] w-[550px]">
+            <Image priority={true} src={"/assets/images/a_side_left.png"} layout={"fill"} className="object-cover"/>
+          </div>
+          <div className="hidden md:block fixed top-0 right-0 z-2 h-[100vh] w-[500px]">
+            <Image priority={true} src={"/assets/images/a_side_right.png"} layout={"fill"} className="object-cover"/>
+          </div>
+          <div className="md:hidden absolute top-0 right-0 z-2 max-h-[790px] h-[100vh] w-[100vw]">
+            <Image priority={true} src={"/assets/images/a_side.png"} layout={"fill"} className="object-contain"/>
+          </div>
           <div className="space-y-8">
             <Heading/>
             {<motion.div animate={!hide ? "open" : "closed"}
@@ -133,7 +139,7 @@ export default function Index() {
               <StatusBox/>
             </motion.div>}
           </div>
-          <motion.div animate={hide ? "up" : "down"} variants={updown}>
+          <motion.div animate={hide ? "up" : "down"} variants={updown} className="relative z-4">
             <AnimateSharedLayout>
               <AnimatePresence exitBeforeEnter={true} initial={false}>
                 <motion.div initial="initial"

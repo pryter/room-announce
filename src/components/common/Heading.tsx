@@ -6,7 +6,7 @@ export const Heading = () => {
       <TriamUdom className="w-[50px] text-TUCMC-pink-400"/>
       <div className="text-center">
         <h1 className="text-TUCMC-gray-700 font-bold text-[1.95rem]">ระบบประกาศห้องเรียน</h1>
-        <h1 className="text-TUCMC-gray-600">โรงเรียนเตรียมอุดมศึกษา ปีการศึกษา 2564</h1>
+        <h1 className="text-TUCMC-gray-600">โรงเรียนเตรียมอุดมศึกษา ปีการศึกษา 2566</h1>
       </div>
     </div>
   )

@@ -12,6 +12,7 @@ import QRCode from 'qrcode'
 import Modal from "@components/common/Modals";
 import {Footer} from "@components/common/Footer";
 import {scheduled} from "../../../configs/timer";
+import {Flowers} from "@components/app/Flowers"
 
 const Display = ({data, setRev, report }) => {
 
@@ -35,7 +36,6 @@ const Display = ({data, setRev, report }) => {
         {title: "เลขประจำตัว", context: data.stdID},
         {title: "แผนการเรียน", context: data.branch},
         {title: ["ชั้น", "ห้อง", "เลขที่"], context: [data.level, data.room, data.number]},
-        {title: "ครูประจำชั้น", context: data.teacher}
       ])
     }
   }, [data])
@@ -78,7 +78,7 @@ const Display = ({data, setRev, report }) => {
   const loadPDF = () => {
     const a = document.createElement("a")
     a.href = `/user/pae.pdf`
-    a.download = `เอกสาร PAE 2564.pdf`
+    a.download = `เอกสาร PAE 2566.pdf`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -131,30 +131,35 @@ const Display = ({data, setRev, report }) => {
 
   return (
     <div>
-      <ContentBox className="pt-10 pb-14 px-6 space-y-8">
-        <div>
-          <h1 className="text-2xl text-gray-700 font-medium">ข้อมูลนักเรียน</h1>
-        </div>
-        <div className="border border-b border-TUCMC-gray-800 w-16"></div>
-        <div className="space-y-2">
-          {
-            parsedData.length > 0 && parsedData.map((item, index) => {
-              return <DataRow key={`row-${index}`} data={item}/>
-            })
-          }
-          {data.accounts && <><div className="space-y-1.5 pt-4"><h1 className="text-gray-700 font-medium">อีเมลโรงเรียน</h1>
-            <div className="space-y-1"><p className="text-TUCMC-gray-600">{data.accounts.mails.prefix}@student.triamudom.ac.th</p>
-              <p className="text-TUCMC-gray-600">Password: {data.accounts.mails.password}</p>
-              <p className="text-TUCMC-gray-600 pt-2">{data.accounts.mails.prefix}@365.triamudom.ac.th</p>
-              <p className="text-TUCMC-gray-600">Password: {data.accounts.mails.password}</p></div>
+      <div className="relative">
+        <ContentBox style={{background:"linear-gradient(179.74deg, #FFF8FB 8.49%, #FFE6F2 146.52%)"}} className="pt-10 pb-14 px-6 space-y-8 relative">
+          <div>
+            <h1 className="text-2xl text-gray-700 font-medium">ข้อมูลนักเรียน</h1>
           </div>
-            <div className="space-y-1.5 pt-4"><h1 className="text-gray-700 font-medium">รหัส Wi-Fi</h1>
-            <div className="space-y-1"><p className="text-TUCMC-gray-600">Username: {data.accounts.wifi.user}</p>
-            <p className="text-TUCMC-gray-600">Password: {data.accounts.wifi.password}</p></div>
+          <div className="border border-b border-TUCMC-gray-800 w-16"></div>
+          <div className="space-y-2">
+            {
+              parsedData.length > 0 && parsedData.map((item, index) => {
+                return <DataRow key={`row-${index}`} data={item}/>
+              })
+            }
+            {data.accounts && <><div className="space-y-1.5 pt-4"><h1 className="text-gray-700 font-medium">อีเมลโรงเรียน</h1>
+                <div className="space-y-1"><p className="text-TUCMC-gray-700">{data.accounts.mails.google}</p>
+                    <p className="text-TUCMC-gray-700">Password: {data.accounts.mails.password}</p>
+                    <p className="text-TUCMC-gray-700 pt-2">{data.accounts.mails.microsoft}</p>
+                    <p className="text-TUCMC-gray-700">Password: {data.accounts.mails.password}</p></div>
             </div>
-          </>}
+                <div className="space-y-1.5 pt-4"><h1 className="text-gray-700 font-medium">รหัส Wi-Fi</h1>
+                    <div className="space-y-1"><p className="text-TUCMC-gray-700">Username: {data.accounts.wifi.user}</p>
+                        <p className="text-TUCMC-gray-700">Password: {data.accounts.wifi.password}</p></div>
+                </div>
+            </>}
+          </div>
+        </ContentBox>
+        <div style={{marginTop: "-196.8px"}} className="absolute right-0 bottom-0">
+          <Flowers/>
         </div>
-      </ContentBox>
+      </div>
           <div className="space-y-2.5">
             <motion.div className="my-4">
               <motion.div animate={qrState ? "open" : "closed"}
@@ -178,42 +183,6 @@ const Display = ({data, setRev, report }) => {
               </motion.div>
             </motion.div>
             <div className="space-y-2.5">
-              {
-                !data.accounts ? <>
-                  <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}} className="flex space-x-2.5 mt-6">
-                    <Button onClick={saveImg}
-                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
-                      <CalendarIcon className="w-5 h-5"/>
-                      <h1 className="font-medium text-lg">ตารางเรียน</h1>
-                    </Button>
-                    <Button onClick={reveal}
-                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-1/2 cursor-pointer">
-                      <Line className="w-5 h-5"/>
-                      <h1 className="font-medium text-lg">กลุ่มไลน์</h1>
-                    </Button>
-                  </motion.div>
-                </> : <>
-                  <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{duration: 0.5}}>
-                    <Button onClick={reveal}
-                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-green-500 rounded-md text-TUCMC-green-500 px-4 py-5 w-full cursor-pointer">
-                      <Line className="w-5 h-5"/>
-                      <h1 className="font-medium text-lg">กลุ่มไลน์</h1>
-                    </Button>
-                  </motion.div>
-                  <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: 0.01, duration: 0.5}} className="flex space-x-2.5 mt-6">
-                    <Button onClick={saveImg}
-                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
-                      <CalendarIcon className="w-5 h-5"/>
-                      <h1 className="font-medium text-lg">ตารางเรียน</h1>
-                    </Button>
-                    <Button onClick={loadPDF}
-                            className="flex justify-center items-center space-x-2.5 border border-TUCMC-gray-600 rounded-md text-TUCMC-gray-600 px-4 py-5 w-1/2 cursor-pointer">
-                      <DocumentTextIcon className="w-5 h-5"/>
-                      <h1 className="font-medium text-lg">เอกสาร PAE</h1>
-                    </Button>
-                  </motion.div>
-                </>
-              }
               <motion.div variants={updown} animate={qrState ? "down" : "up"} initial={false} transition={{delay: scheduled(0.01, 0.04), duration: 0.5}}>
                 <Button onClick={back}
                         className={classnames("flex justify-center items-center space-x-2.5 border border-TUCMC-gray-500 rounded-md text-TUCMC-gray-500 px-4 py-5 w-full cursor-pointer", !data.accounts ? "": "mt-12")}>
