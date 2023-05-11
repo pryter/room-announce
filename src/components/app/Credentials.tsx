@@ -34,10 +34,10 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
   }, [section])
 
   const {loading, submitFunc} = useSubmit(async () => {
-    if (lastnameStat !== "correct") return addToast({
-      color: "red", icon: "cross", text: <span>นามสกุลไม่ตรงกับข้อมูลบนฐานข้อมูล หากยังพบข้อผิดพลาดสามารถข้อแก้ไขข้อมูลได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
-      theme: "modern", title: "นามสกุลไม่ตรงกับข้อมูลบนฐานข้อมูล"
-    })
+    // if (lastnameStat !== "correct") return addToast({
+    //   color: "red", icon: "cross", text: <span>นามสกุลไม่ตรงกับข้อมูลบนฐานข้อมูล หากยังพบข้อผิดพลาดสามารถข้อแก้ไขข้อมูลได้<span onClick={report} className="text-TUCMC-pink-400 underline">ที่นี่</span></span>,
+    //   theme: "modern", title: "นามสกุลไม่ตรงกับข้อมูลบนฐานข้อมูล"
+    // })
 
     if (!(phone.length >= 9 && phone.length <= 10)) return addToast({
       color: "red", icon: "cross", text: "กรุณาลองกรอกใหม่อีกครั้ง เบอร์โทรศัพท์จะต้องมีความยาว 9 - 10 หลักเท่านั้น",
@@ -115,7 +115,7 @@ export const Credentials = ({userCred, setDisplay, report, setRev}) => {
             onChange={(event) => {
               setLastname(event.target.value)
             }}
-            className={classnames("appearance-none outline-none block w-full rounded-full px-4 h-11 shadow-sm placeholder-TUCMC-gray-400", lastnameStat === "wrong" ? "border-TUCMC-red-500 focus:ring-TUCMC-red-500 focus:border-TUCMC-red-500" : lastnameStat === "correct" ? "border-green-500 focus:ring-TUCMC-green-500 focus:border-TUCMC-green-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
+            className={classnames("appearance-none outline-none block w-full rounded-full px-4 h-11 shadow-sm placeholder-TUCMC-gray-400", lastnameStat === "wrong" ? "border-TUCMC-orange-400 focus:ring-TUCMC-orange-400 focus:border-TUCMC-orange-400" : lastnameStat === "correct" ? "border-green-500 focus:ring-TUCMC-green-500 focus:border-TUCMC-green-500" : "border-gray-300 focus:ring-TUCMC-pink-500 focus:border-TUCMC-pink-500")}
             placeholder="นามสกุล"
             value={lastname}
             required
